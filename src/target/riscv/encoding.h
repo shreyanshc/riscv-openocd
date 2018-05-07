@@ -1,4 +1,4 @@
-/* See LICENSE for license details. */
+// See LICENSE for license details.
 
 #ifndef RISCV_CSR_ENCODING_H
 #define RISCV_CSR_ENCODING_H
@@ -156,16 +156,16 @@
 #define EXT_IO_BASE        0x40000000
 #define DRAM_BASE          0x80000000
 
-/* page table entry (PTE) fields */
-#define PTE_V     0x001 /* Valid */
-#define PTE_R     0x002 /* Read */
-#define PTE_W     0x004 /* Write */
-#define PTE_X     0x008 /* Execute */
-#define PTE_U     0x010 /* User */
-#define PTE_G     0x020 /* Global */
-#define PTE_A     0x040 /* Accessed */
-#define PTE_D     0x080 /* Dirty */
-#define PTE_SOFT  0x300 /* Reserved for Software */
+// page table entry (PTE) fields
+#define PTE_V     0x001 // Valid
+#define PTE_R     0x002 // Read
+#define PTE_W     0x004 // Write
+#define PTE_X     0x008 // Execute
+#define PTE_U     0x010 // User
+#define PTE_G     0x020 // Global
+#define PTE_A     0x040 // Accessed
+#define PTE_D     0x080 // Dirty
+#define PTE_SOFT  0x300 // Reserved for Software
 
 #define PTE_PPN_SHIFT 10
 
@@ -191,7 +191,6 @@
 
 #ifdef __GNUC__
 
-/*
 #define read_csr(reg) ({ unsigned long __tmp; \
   asm volatile ("csrr %0, " #reg : "=r"(__tmp)); \
   __tmp; })
@@ -210,7 +209,6 @@
 #define clear_csr(reg, bit) ({ unsigned long __tmp; \
   asm volatile ("csrrc %0, " #reg ", %1" : "=r"(__tmp) : "rK"(bit)); \
   __tmp; })
-  */
 
 #define rdtime() read_csr(time)
 #define rdcycle() read_csr(cycle)
@@ -736,8 +734,8 @@
 #define MASK_CUSTOM2_RD  0x707f
 #define MATCH_CUSTOM2_RD_RS1 0x605b
 #define MASK_CUSTOM2_RD_RS1  0x707f
-#define MATCH_CUSTOM2_RD_RS1_RS2 0x705b
-#define MASK_CUSTOM2_RD_RS1_RS2  0x707f
+#define MATCH_HICHE 0x705b
+#define MASK_HICHE  0xfe00707f
 #define MATCH_CUSTOM3 0x7b
 #define MASK_CUSTOM3  0x707f
 #define MATCH_CUSTOM3_RS1 0x207b
@@ -1233,7 +1231,7 @@ DECLARE_INSN(custom2_rs1, MATCH_CUSTOM2_RS1, MASK_CUSTOM2_RS1)
 DECLARE_INSN(custom2_rs1_rs2, MATCH_CUSTOM2_RS1_RS2, MASK_CUSTOM2_RS1_RS2)
 DECLARE_INSN(custom2_rd, MATCH_CUSTOM2_RD, MASK_CUSTOM2_RD)
 DECLARE_INSN(custom2_rd_rs1, MATCH_CUSTOM2_RD_RS1, MASK_CUSTOM2_RD_RS1)
-DECLARE_INSN(custom2_rd_rs1_rs2, MATCH_CUSTOM2_RD_RS1_RS2, MASK_CUSTOM2_RD_RS1_RS2)
+DECLARE_INSN(hiche, MATCH_HICHE, MASK_HICHE)
 DECLARE_INSN(custom3, MATCH_CUSTOM3, MASK_CUSTOM3)
 DECLARE_INSN(custom3_rs1, MATCH_CUSTOM3_RS1, MASK_CUSTOM3_RS1)
 DECLARE_INSN(custom3_rs1_rs2, MATCH_CUSTOM3_RS1_RS2, MASK_CUSTOM3_RS1_RS2)
